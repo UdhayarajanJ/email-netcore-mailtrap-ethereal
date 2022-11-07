@@ -76,5 +76,33 @@ namespace api.fakesmtp.provider.Controllers
             }
             return Ok(apiReponse);
         }
+        [HttpPost("SendingHtmlEmailOfEthereal")]
+        public async Task<IActionResult> SendingHtmlEmailOfEthereal([FromBody] SendingEmailOfEtherealModel sendingEmailOfEtheralModel)
+        {
+            ApiReponse apiReponse = new ApiReponse();
+            try
+            {
+                bool result = await _emailSenderRepository.SendingHtmlEmailOfEthereal(sendingEmailOfEtheralModel);
+                if (result)
+                {
+                    apiReponse.statusCode = (int)HttpStatusCode.OK;
+                    apiReponse.statusMessage = "Email Sent Successfully...";
+                    apiReponse.responseData = result;
+                }
+                else
+                {
+                    apiReponse.statusCode = (int)HttpStatusCode.NotFound;
+                    apiReponse.statusMessage = "Email Not Sent...";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                apiReponse.statusCode = (int)HttpStatusCode.InternalServerError;
+                apiReponse.statusMessage = ex.Message;
+                apiReponse.responseData = ex;
+            }
+            return Ok(apiReponse);
+        }
     }
 }
