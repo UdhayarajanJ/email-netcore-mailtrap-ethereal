@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace api.fakesmtp.provider.Controllers
 {
-    [Route("EmailSender")]
+    [Route("EtherealEmail")]
     [ApiController]
-    public class EmailController : ControllerBase
+    public class EtherealEmailController : ControllerBase
     {
-        private IEmailSenderRepository _emailSenderRepository;
-        public EmailController(IEmailSenderRepository emailSenderRepository)
+        private IEtherealEmailSenderRepository _emailSenderRepository;
+        public EtherealEmailController(IEtherealEmailSenderRepository emailSenderRepository)
         {
             _emailSenderRepository = emailSenderRepository;
         }
 
         [HttpPost("SendingEmailOfEthereal")]
-        public async Task<IActionResult> SendingEmailOfEthereal([FromBody] SendingEmailOfEtherealModel sendingEmailOfEtheralModel)
+        public async Task<IActionResult> SendingEmailOfEthereal([FromBody] SendingEmailOfModel sendingEmailOfEtheralModel)
         {
             ApiReponse apiReponse = new ApiReponse();
             try
@@ -49,7 +49,7 @@ namespace api.fakesmtp.provider.Controllers
             return Ok(apiReponse);
         }
         [HttpPost("SendingAttachmentEmailOfEthereal")]
-        public async Task<IActionResult> SendingAttachmentEmailOfEthereal([FromForm] SendingAttachmentFileOfEtherealModel sendingAttachmentFileOfEtherealModel)
+        public async Task<IActionResult> SendingAttachmentEmailOfEthereal([FromForm] SendingAttachmentFileOfModel sendingAttachmentFileOfEtherealModel)
         {
             ApiReponse apiReponse = new ApiReponse();
             try
@@ -77,7 +77,7 @@ namespace api.fakesmtp.provider.Controllers
             return Ok(apiReponse);
         }
         [HttpPost("SendingHtmlEmailOfEthereal")]
-        public async Task<IActionResult> SendingHtmlEmailOfEthereal([FromBody] SendingEmailOfEtherealModel sendingEmailOfEtheralModel)
+        public async Task<IActionResult> SendingHtmlEmailOfEthereal([FromBody] SendingEmailOfModel sendingEmailOfEtheralModel)
         {
             ApiReponse apiReponse = new ApiReponse();
             try

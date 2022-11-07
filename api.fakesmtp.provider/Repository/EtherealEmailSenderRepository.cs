@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace api.fakesmtp.provider.Repository
 {
-    public class EmailSenderRepository : IEmailSenderRepository
+    public class EtherealEmailSenderRepository : IEtherealEmailSenderRepository
     {
         private EtherealMailConfiguration _etherealMailConfiguration;
-        public EmailSenderRepository(EtherealMailConfiguration etherealMailConfiguration)
+        public EtherealEmailSenderRepository(EtherealMailConfiguration etherealMailConfiguration)
         {
             _etherealMailConfiguration = etherealMailConfiguration;
         }
 
-        public async Task<bool> SendingAttachmentEmailOfEthereal(SendingAttachmentFileOfEtherealModel sendingAttachmentFileOfEtherealModel)
+        public async Task<bool> SendingAttachmentEmailOfEthereal(SendingAttachmentFileOfModel sendingAttachmentFileOfEtherealModel)
         {
             var email = new MimeMessage();
             email.Sender = MailboxAddress.Parse(_etherealMailConfiguration.userName);
@@ -50,7 +50,7 @@ namespace api.fakesmtp.provider.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<bool> SendingEmailOfEthereal(SendingEmailOfEtherealModel sendingEmailOfEtheralModel)
+        public async Task<bool> SendingEmailOfEthereal(SendingEmailOfModel sendingEmailOfEtheralModel)
         {
             var email = new MimeMessage();
             email.Sender = MailboxAddress.Parse(_etherealMailConfiguration.userName);
@@ -70,7 +70,7 @@ namespace api.fakesmtp.provider.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<bool> SendingHtmlEmailOfEthereal(SendingEmailOfEtherealModel sendingEmailOfEtherealModel)
+        public async Task<bool> SendingHtmlEmailOfEthereal(SendingEmailOfModel sendingEmailOfEtherealModel)
         {
             var email = new MimeMessage();
             email.Sender = MailboxAddress.Parse(_etherealMailConfiguration.userName);
