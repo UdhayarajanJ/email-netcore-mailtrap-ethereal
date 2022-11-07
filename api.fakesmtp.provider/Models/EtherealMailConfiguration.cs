@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace api.fakesmtp.provider.Models
+{
+    public class EtherealMailConfiguration
+    {
+        public string name { get; set; }
+        public string userName { get; set; }
+        public string password { get; set; }
+        public string host { get; set; }
+        public int port { get; set; }
+    }
+}
