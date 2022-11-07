@@ -1,3 +1,5 @@
+using api.fakesmtp.provider.IRepository;
+using api.fakesmtp.provider.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +33,10 @@ namespace api.fakesmtp.provider
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "api.fakesmtp.provider", Version = "v1" });
             });
+
+            //Added Dependency
+
+            services.AddTransient<IEmailSenderRepository, EmailSenderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
