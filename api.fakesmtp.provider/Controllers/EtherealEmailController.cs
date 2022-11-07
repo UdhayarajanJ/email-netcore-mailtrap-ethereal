@@ -19,6 +19,12 @@ namespace api.fakesmtp.provider.Controllers
         {
             _emailSenderRepository = emailSenderRepository;
         }
+        
+        /// <summary>
+        /// To Send Plain Message Email To Ethereal SMTP Provider
+        /// </summary>
+        /// <param name="sendingEmailOfEtheralModel"></param>
+        /// <returns></returns>
 
         [HttpPost("SendingEmailOfEthereal")]
         public async Task<IActionResult> SendingEmailOfEthereal([FromBody] SendingEmailOfModel sendingEmailOfEtheralModel)
@@ -48,6 +54,13 @@ namespace api.fakesmtp.provider.Controllers
             }
             return Ok(apiReponse);
         }
+
+        /// <summary>
+        /// To Send Attachment With Message Email To Ethereal SMTP Provider
+        /// </summary>
+        /// <param name="sendingAttachmentFileOfEtherealModel"></param>
+        /// <returns></returns>
+
         [HttpPost("SendingAttachmentEmailOfEthereal")]
         public async Task<IActionResult> SendingAttachmentEmailOfEthereal([FromForm] SendingAttachmentFileOfModel sendingAttachmentFileOfEtherealModel)
         {
@@ -76,6 +89,13 @@ namespace api.fakesmtp.provider.Controllers
             }
             return Ok(apiReponse);
         }
+
+        /// <summary>
+        /// To Send HTML Email To Ethereal SMTP Provider
+        /// </summary>
+        /// <param name="sendingEmailOfEtheralModel"></param>
+        /// <returns></returns>
+
         [HttpPost("SendingHtmlEmailOfEthereal")]
         public async Task<IActionResult> SendingHtmlEmailOfEthereal([FromBody] SendingEmailOfModel sendingEmailOfEtheralModel)
         {
