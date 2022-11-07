@@ -7,5 +7,7 @@ namespace api.fakesmtp.provider.IRepository
 {
     public interface IEmailSenderRepository
     {
+        public Task<bool> SendingEmailOfEthereal(SendingEmailOfEtherealModel sendingEmailOfEtheralModel);
+        public Task<bool> SendingAttachmentEmailOfEthereal(SendingAttachmentFileOfEtherealModel sendingAttachmentFileOfEtherealModel);
     }
 }
