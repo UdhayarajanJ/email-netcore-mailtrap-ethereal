@@ -69,5 +69,10 @@ namespace api.fakesmtp.provider.Repository
             return true;
             throw new NotImplementedException();
         }
+
+        public Task<bool> SendingHtmlEmailOfEthereal(SendingEmailOfEtherealModel sendingEmailOfEtherealModel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
