@@ -1,4 +1,5 @@
 using api.fakesmtp.provider.IRepository;
+using api.fakesmtp.provider.Models;
 using api.fakesmtp.provider.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,6 +38,8 @@ namespace api.fakesmtp.provider
             //Added Dependency
 
             services.AddTransient<IEmailSenderRepository, EmailSenderRepository>();
+            services.AddSingleton<EtherealMailConfiguration>(Configuration.GetSection("MailConfigurations:EtherealConfig").Get<EtherealMailConfiguration>());
+            services.AddSingleton<MailTrapConfigurations>(Configuration.GetSection("MailConfigurations:MailtrapConfig").Get<MailTrapConfigurations>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
