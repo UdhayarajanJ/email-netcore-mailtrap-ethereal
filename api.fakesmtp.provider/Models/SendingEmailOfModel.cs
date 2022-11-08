@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace api.fakesmtp.provider.IRepository
 {
-    public class SendingEmailOfEtherealModel
+    public class SendingEmailOfModel
     {
         public string subject { get; set; }
         public string toEmailAddress { get; set; }
         public string message { get; set; }
     }
 
-    public class SendingAttachmentFileOfEtherealModel : SendingEmailOfEtherealModel
+    public class SendingAttachmentFileOfModel : SendingEmailOfModel
     {
         public IFormFile emailAttachment { get; set; }
     }

@@ -37,7 +37,9 @@ namespace api.fakesmtp.provider
 
             //Added Dependency
 
-            services.AddTransient<IEmailSenderRepository, EmailSenderRepository>();
+            services.AddTransient<IEtherealEmailSenderRepository, EtherealEmailSenderRepository>();
+            services.AddTransient<IMailTrapEmailSenderRepository, MailTrapEmailSenderRepository>();
+
             services.AddSingleton<EtherealMailConfiguration>(Configuration.GetSection("MailConfigurations:EtherealConfig").Get<EtherealMailConfiguration>());
             services.AddSingleton<MailTrapConfigurations>(Configuration.GetSection("MailConfigurations:MailtrapConfig").Get<MailTrapConfigurations>());
         }
