@@ -132,5 +132,60 @@ namespace api.email.testing.TestController
             apiReponse.statusMessage.Should().BeEquivalentTo("Email Sent Successfully...");
             apiReponse.responseData.Should().Be(result);
         }
+
+        /// <summary>
+        /// Should_Be_Send_Ethereal_Attachment_With_Message_Email Test Case Passed
+        /// </summary>
+        /// <returns></returns>
+
+        [Fact(DisplayName = "Should_Be_Send_Ethereal_Attachment_With_Message_Email")]
+        private async Task Should_Be_Send_Ethereal_Attachment_With_Message_Email()
+        {
+            //Arrange
+            bool result = true;
+            int expectedStatusCode = 200;
+            SendingAttachmentFileOfModel sendingAttachmentFileOfModel = await _mockEtherealEmailController.GetMockSendingEmailDataWithAttachmentForEthereal();
+            _mockEtherealEmailSenderRepository.Setup(x => x.SendingAttachmentEmailOfEthereal(sendingAttachmentFileOfModel)).Returns(Task.FromResult(result));
+
+            //Act
+            EtherealEmailController etherealEmailController = new EtherealEmailController(_mockEtherealEmailSenderRepository.Object);
+            var callAPI = etherealEmailController.SendingAttachmentEmailOfEthereal(sendingAttachmentFileOfModel);
+            var actionResult = await callAPI as OkObjectResult;
+            ApiReponse apiReponse = (ApiReponse)actionResult.Value;
+
+            // Assert
+            apiReponse.Should().NotBeNull();
+            apiReponse.statusCode.Should().Be(expectedStatusCode);
+            apiReponse.statusMessage.Should().BeEquivalentTo("Email Sent Successfully...");
+            apiReponse.responseData.Should().Be(result);
+        }
+
+        /// <summary>
+        /// Should_Not_Be_Send_Ethereal_Attachment_With_Message_Email Test Case Failed
+        /// </summary>
+        /// <returns></returns>
+
+        [Fact(DisplayName = "Should_Not_Be_Send_Ethereal_Attachment_With_Message_Email")]
+        private async Task Should_Not_Be_Send_Ethereal_Attachment_With_Message_Email()
+        {
+            //Arrange
+            bool result = false;
+            int expectedStatusCode = 404;
+            SendingEmailOfModel sendingEmailOfModel = await _mockEtherealEmailController.GetMockSendingEmailDataForEthereal();
+            _mockEtherealEmailSenderRepository.Setup(x => x.SendingHtmlEmailOfEthereal(sendingEmailOfModel)).Returns(Task.FromResult(result));
+
+            //Act
+            EtherealEmailController etherealEmailController = new EtherealEmailController(_mockEtherealEmailSenderRepository.Object);
+            var callAPI = etherealEmailController.SendingHtmlEmailOfEthereal(sendingEmailOfModel);
+            var actionResult = await callAPI as OkObjectResult;
+            ApiReponse apiReponse = (ApiReponse)actionResult.Value;
+
+            // Assert
+            apiReponse.Should().NotBeNull();
+            apiReponse.statusCode.Should().Be(expectedStatusCode);
+            apiReponse.statusMessage.Should().BeEquivalentTo("Email Not Sent...");
+            apiReponse.responseData.Should().BeNull();
+        }
+
     }
 }
